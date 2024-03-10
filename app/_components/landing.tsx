@@ -45,12 +45,12 @@ export default function SplitScreen() {
                         <Link target='_blank' rel='noopener noreferrer' href={"http://localhost:5000/proof-request?clientID=2132100&clientSecret=123&configID=1222"}>
                             <Button
                                 rounded={'full'}
-                                bg={'blue.400'}
+                                bg={'blue.500'}
                                 color={'white'}
                                 _hover={{
                                     bg: 'blue.500',
                                 }}>
-                                    Verify Creds
+                                Verify Creds
                             </Button>
                         </Link>
                         <Button rounded={'full'}>How It Works</Button>
