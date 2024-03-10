@@ -42,17 +42,7 @@ export default function SplitScreen() {
                         perfect for freelancers, agencies, and moonlighters.
                     </Text>
                     <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-                        <Link target='_blank' rel='noopener noreferrer' href={"http://localhost:5000/proof-request?clientID=2132100&clientSecret=123&configID=1222"}>
-                            <Button
-                                rounded={'full'}
-                                bg={'blue.500'}
-                                color={'white'}
-                                _hover={{
-                                    bg: 'blue.500',
-                                }}>
-                                Verify Creds
-                            </Button>
-                        </Link>
+                        <Link target='_blank' rel='noopener noreferrer' href={"http://localhost:4200/proof-request?clientID=2132100&clientSecret=123&configID=23"}> <Button rounded={'full'} bg={'blue.500'} color={'white'} _hover={{ bg: 'blue.500', }}> Verify Creds </Button> </Link>
                         <Button rounded={'full'}>How It Works</Button>
                     </Stack>
                 </Stack>
