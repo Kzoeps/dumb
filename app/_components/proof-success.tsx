@@ -10,15 +10,18 @@ export default function Success(props: any) {
       <Heading as="h2" size="xl" mt={6} mb={2}>
         Credentials Verified
       </Heading>
-      <Text color={'gray.500'}>
+        <ul>
         {props.params.map(({display, value}: any) => {
             return (
                 <li key={value}>
-                    <strong>{display}</strong>: {value}
+
+                <Text color={'gray.500'}>
+                    <span style={{fontWeight: "bolder"}}>{display}</span>: {value}
+                </Text>
                 </li>
             )
         } )}
-      </Text>
+        </ul>
     </Box>
   )
 }

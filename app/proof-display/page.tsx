@@ -1,3 +1,4 @@
+'use client'
 import { ChakraProvider } from "@chakra-ui/react"
 import Success from "../_components/proof-success"
 import Nav from "../_components/nav"
