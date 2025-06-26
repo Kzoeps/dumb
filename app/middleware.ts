@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { updateSession } from "./utils/supabase/middleware";
 
-export function middleware() {
+export async function middleware(request: NextRequest) {
     // retrieve the current response
-    const res = NextResponse.next()
+    const res = await updateSession(request)
 
     // add the CORS headers to the response
     res.headers.append('Access-Control-Allow-Credentials', "true")
