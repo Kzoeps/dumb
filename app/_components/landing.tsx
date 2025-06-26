@@ -43,7 +43,7 @@ export default function SplitScreen() {
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
 
-            <Link target='_blank' rel='noopener noreferrer' href={"http://localhost:3000/proof-request/58"}> <Button rounded={'full'} bg={'blue.500'} color={'white'} _hover={{ bg: 'blue.500', }}> Verify Creds </Button> </Link>            <Button rounded={'full'}>How It Works</Button>
+            <Link target='_blank' rel='noopener noreferrer' href={"http://localhost:3000/proof-request/63"}> <Button rounded={'full'} bg={'blue.500'} color={'white'} _hover={{ bg: 'blue.500', }}> Verify Creds </Button> </Link>            <Button rounded={'full'}>How It Works</Button>
           </Stack>
         </Stack>
       </Flex>
