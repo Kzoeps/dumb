@@ -1,17 +1,24 @@
 'use client'
-
 import {
   Button,
   Flex,
   Heading,
   Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Stack,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import Link from 'next/link'
+import { useState } from 'react'
 
 export default function SplitScreen() {
+  const [showIFrame, setShowIFrame] = useState(false);
   return (
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -42,11 +49,11 @@ export default function SplitScreen() {
             perfect for freelancers, agencies, and moonlighters.
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-
-            <Link target='_blank' rel='noopener noreferrer' href={"http://localhost:3000/proof-request/63"}> <Button rounded={'full'} bg={'blue.500'} color={'white'} _hover={{ bg: 'blue.500', }}> Verify Creds </Button> </Link>            <Button rounded={'full'}>How It Works</Button>
+            <Button rounded={'full'} bg={'blue.500'} color={'white'} _hover={{ bg: 'blue.500', }} onClick={() => setShowIFrame(true)}> Verify Creds </Button>
+            <Button rounded={'full'}>How It Works</Button>
           </Stack>
         </Stack>
-      </Flex>
+      </Flex >
       <Flex flex={1}>
         <Image
           alt={'Login Image'}
@@ -56,6 +63,23 @@ export default function SplitScreen() {
           }
         />
       </Flex>
-    </Stack>
+
+      <Modal isOpen={showIFrame} size={"4xl"} onClose={() => setShowIFrame(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>QR Code</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody className='flex justify-center items-center'>
+            <iframe src='https://gooey-psi.vercel.app/proof-request/68' className='w-[45rem] h-[45rem] rounded-lg' />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={() => setShowIFrame(false)}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Stack >
   )
 }
