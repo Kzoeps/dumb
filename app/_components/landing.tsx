@@ -111,10 +111,11 @@ export default function SplitScreen() {
       console.error("Failed to create session");
       return;
     }
+    setShowIFrame(true);
 
     // Now open the verification URL with the UUID
-    const verificationUrl = `http://localhost:3000/proof-request/63?sessionId=${generatedUuid}`;
-    window.open(verificationUrl, "_blank");
+    // const verificationUrl = `http://localhost:3000/proof-request/63?sessionId=${generatedUuid}`;
+    // window.open(verificationUrl, "_blank");
   };
 
   const resetVerification = () => {
@@ -262,7 +263,7 @@ export default function SplitScreen() {
             <ModalCloseButton />
             <ModalBody className="flex justify-center items-center">
               <iframe
-                src="https://gooey-psi.vercel.app/proof-request/68"
+                src={`https://gooey-psi.vercel.app/proof-request/${process.env.NEXT_PUBLIC_SCHEMA_ID}?sessionId=${sessionId}`}
                 className="w-[45rem] h-[45rem] rounded-lg"
               />
             </ModalBody>
