@@ -254,7 +254,7 @@ export default function SplitScreen() {
         </Flex>
         <Modal
           isOpen={showIFrame}
-          size={"4xl"}
+          size={"3xl"}
           onClose={() => setShowIFrame(false)}
         >
           <ModalOverlay />
@@ -280,30 +280,6 @@ export default function SplitScreen() {
           </ModalContent>
         </Modal>
       </Stack>
-
-      {/* Loading overlay */}
-      {isLoading && (
-        <Flex
-          position={"fixed"}
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          bg={"blackAlpha.600"}
-          align={"center"}
-          justify={"center"}
-          zIndex={9999}
-        >
-          <Stack align={"center"} spacing={4}>
-            <Text color={"white"} fontSize={"xl"} fontWeight={"bold"}>
-              Waiting for verification...
-            </Text>
-            <Text color={"white"} fontSize={"md"}>
-              Please complete the verification process in the new window
-            </Text>
-          </Stack>
-        </Flex>
-      )}
     </>
   );
 }
