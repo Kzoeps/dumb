@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   Image,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -21,6 +22,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function SplitScreen() {
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [isSchemaSet, setIsSchemaSet] = useState(false);
+  const [schemaUrl, setSchemaUrl] = useState<string | null>(null);
   const [isVerified, setIsVerified] = useState(false);
   const [userDetails, setUserDetails] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -211,6 +214,11 @@ export default function SplitScreen() {
               The project board is an exclusive resource for contract work.
               It&apos;s perfect for freelancers, agencies, and moonlighters.
             </Text>
+            <Flex align={'center'} justify={'center'} gap={4}>
+
+            <Input name="schemaId" value={schemaUrl || ""} readOnly={isSchemaSet} onChange={(e) => setSchemaUrl(e.target.value)} />
+            <Button disabled={isSchemaSet} padding={4} onClick={() => setIsSchemaSet(true)} ><p style={{padding: '12px'}}>Set Schema ID</p></Button>
+            </Flex>
             <Stack direction={{ base: "column", md: "row" }} spacing={4}>
               <Button
                 rounded={"full"}
@@ -247,7 +255,7 @@ export default function SplitScreen() {
             <ModalCloseButton />
             <ModalBody className="flex justify-center items-center">
               <iframe
-                src={`https://gooey-psi.vercel.app/proof-request/${process.env.NEXT_PUBLIC_SCHEMA_ID}?sessionId=${sessionId}`}
+                src={`https://gooey-psi.vercel.app/proof-request/${schemaUrl}?sessionId=${sessionId}`}
                 className="w-[45rem] h-[45rem] rounded-lg"
               />
             </ModalBody>
