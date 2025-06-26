@@ -165,22 +165,6 @@ export default function SplitScreen() {
                 {JSON.stringify(userDetails, null, 2)}
               </Text>
             </Stack>
-            <Stack direction={{ base: "column", md: "row" }} spacing={4}>
-              <Button
-                rounded={"full"}
-                bg={"blue.500"}
-                color={"white"}
-                _hover={{ bg: "blue.600" }}
-                onClick={() => {
-                  setIsVerified(false);
-                  setUserDetails(null);
-                  setSessionId(null);
-                  setIsLoading(false);
-                }}
-              >
-                Start New Verification
-              </Button>
-            </Stack>
           </Stack>
         </Flex>
         <Flex flex={1}>
