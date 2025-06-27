@@ -32,42 +32,36 @@ export default function SplitScreen() {
   // Move useBreakpointValue to top level to avoid conditional hook calls
   const breakpointHeight = useBreakpointValue({ base: "20%", md: "30%" });
 
-  // Subscribe to realtime changes for the session
+  // Poll the sessions table for updates on a set interval
   useEffect(() => {
     if (!sessionId) return;
 
-    console.log("Setting up realtime subscription for session:", sessionId);
-
-    const channel = supabase
-      .channel("session-changes")
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "sessions",
-          filter: `id=eq.${sessionId}`,
-        },
-        (payload) => {
-          console.log("Session updated:", payload);
-          const updatedSession = payload.new;
-
-          if (updatedSession.verified) {
-            setIsVerified(true);
-            setUserDetails(updatedSession.user_details);
-            setIsLoading(false);
-            console.log(
-              "Session verified with details:",
-              updatedSession.user_details
-            );
-          }
+    console.log("Setting up polling for session:", sessionId);
+    const intervalId = setInterval(async () => {
+      try {
+        const { data, error } = await supabase
+          .from("sessions")
+          .select("verified, user_details")
+          .eq("id", sessionId)
+          .single();
+        if (error) {
+          console.error("Polling error:", error);
+          return;
         }
-      )
-      .subscribe();
+        if (data?.verified) {
+          setIsVerified(true);
+          setUserDetails(data.user_details);
+          setIsLoading(false);
+          console.log("Session verified with details:", data.user_details);
+        }
+      } catch (err) {
+        console.error("Polling exception:", err);
+      }
+    }, 2000); // Poll every 2 seconds
 
     return () => {
-      console.log("Cleaning up realtime subscription");
-      supabase.removeChannel(channel);
+      console.log("Cleaning up polling interval");
+      clearInterval(intervalId);
     };
   }, [sessionId]);
 
